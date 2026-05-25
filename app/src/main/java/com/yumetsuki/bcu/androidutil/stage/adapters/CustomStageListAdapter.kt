@@ -166,7 +166,7 @@ class CustomStageListAdapter(private val ctx: PackStageManager, private val map:
         }
 
         private fun haveSame(id: Identifier<AbEnemy>, result: List<SCDef.Line?>): Boolean {
-            if (id.pack == Identifier.DEF && (id.id == 19 || id.id == 20 || id.id == 21))
+            if (id.fromBC() && (id.id == 19 || id.id == 20 || id.id == 21))
                 return false
 
             for (data in result) {
@@ -390,7 +390,7 @@ class CustomStageListAdapter(private val ctx: PackStageManager, private val map:
             if (st.bg?.get() == null)
                 return@setOnLongClickListener false
             val intent = Intent(ctx, ImageViewer::class.java)
-            if(st.bg.pack == Identifier.DEF)
+            if(st.bg.fromBC())
                 intent.putExtra("BGNum", UserProfile.getBCData().bgs.indexOf(st.bg.get()))
 
             intent.putExtra("Data", JsonEncoder.encode(st.bg).toString())
@@ -428,7 +428,7 @@ class CustomStageListAdapter(private val ctx: PackStageManager, private val map:
             if (st.bg1?.get() == null)
                 return@setOnLongClickListener false
             val intent = Intent(ctx, ImageViewer::class.java)
-            if(st.bg1.pack == Identifier.DEF)
+            if(st.bg1.fromBC())
                 intent.putExtra("BGNum", UserProfile.getBCData().bgs.indexOf(st.bg1.get()))
 
             intent.putExtra("Data", JsonEncoder.encode(st.bg1).toString())

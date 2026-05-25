@@ -248,7 +248,7 @@ class GetStrings(private val c: Context) {
 
     fun getPackName(id: Identifier<*>, isRaw: Boolean) : String {
         return if (isRaw) id.pack
-        else if (id.pack == Identifier.DEF) c.getString(R.string.pack_default)
+        else if (id.fromBC()) c.getString(R.string.pack_default)
         else StaticStore.getPackName(id.pack)
     }
     fun getPackName(pack: String, isRaw: Boolean) : String {
@@ -442,7 +442,7 @@ class GetStrings(private val c: Context) {
     }
     fun traitIcons(traits : SortedPackSet<Trait>) : Array<Bitmap> {
         return Array(traits.size) { i ->
-            if(traits[i].id.pack == Identifier.DEF) CommonStatic.getBCAssets().icon[3][traits[i].id.id].img.bimg() as Bitmap
+            if(traits[i].fromBC()) CommonStatic.getBCAssets().icon[3][traits[i].id.id].img.bimg() as Bitmap
             else if (traits[i].icon != null && traits[i].icon.img != null) traits[i].icon.img.bimg() as Bitmap
             else CommonStatic.getBCAssets().dummyTrait.img.bimg() as Bitmap
         }

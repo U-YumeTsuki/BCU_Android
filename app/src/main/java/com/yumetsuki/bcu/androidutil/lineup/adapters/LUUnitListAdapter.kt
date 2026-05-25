@@ -126,7 +126,7 @@ class LUUnitListAdapter(context: Context, private val numbers: ArrayList<Identif
     }
 
     private fun generateID(id: Identifier<AbUnit>) : String {
-        return if(id.pack == Identifier.DEF) {
+        return if(id.fromBC()) {
             context.getString(R.string.pack_default)+" - "+ Data.trio(id.id)
         } else {
             StaticStore.getPackName(id.pack) + " - " + Data.trio(id.id)

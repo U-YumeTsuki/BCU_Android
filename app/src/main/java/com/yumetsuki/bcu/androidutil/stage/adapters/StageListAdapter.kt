@@ -99,7 +99,7 @@ class StageListAdapter(private val activity: Activity, private val stages: Array
     }
 
     private fun haveSame(id: Identifier<AbEnemy>, result: List<SCDef.Line?>): Boolean {
-        if (id.pack == Identifier.DEF && (id.id == 19 || id.id == 20 || id.id == 21))
+        if (id.fromBC() && (id.id == 19 || id.id == 20 || id.id == 21))
             return false
 
         for (data in result) {

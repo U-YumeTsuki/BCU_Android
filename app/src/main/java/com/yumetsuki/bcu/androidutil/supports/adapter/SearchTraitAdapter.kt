@@ -66,7 +66,7 @@ class SearchTraitAdapter(private val context: Context, private val colors: Array
 
             ch.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, icon, null)
             ch.setOnLongClickListener {
-                val msg = if (colors[i].pack == Identifier.DEF)
+                val msg = if (colors[i].fromBC())
                     context.getText(toolID[i]).toString()
                 else trait.name
                 StaticStore.showShortMessage(context, msg)
@@ -90,7 +90,7 @@ class SearchTraitAdapter(private val context: Context, private val colors: Array
     }
 
     private fun getIcon(trait: Trait): Drawable {
-        return if(trait.id.pack == Identifier.DEF) getDrawable(CommonStatic.getBCAssets().icon[3][trait.id.id].img.bimg() as Bitmap)
+        return if(trait.fromBC()) getDrawable(CommonStatic.getBCAssets().icon[3][trait.id.id].img.bimg() as Bitmap)
         else if (trait.icon != null && trait.icon.img != null) getDrawable(trait.icon.img.bimg() as Bitmap)
         else getDrawable(CommonStatic.getBCAssets().dummyTrait.img.bimg() as Bitmap)
     }

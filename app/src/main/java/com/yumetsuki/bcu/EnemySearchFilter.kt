@@ -60,7 +60,7 @@ open class EnemySearchFilter : AppCompatActivity() {
         intArrayOf(R.string.abi_ithch, 0, Data.AB_THEMEI.toInt()), intArrayOf(R.string.abi_iseal, 1, Data.P_IMUSEAL.toInt()), intArrayOf(R.string.abi_iboswv, 0, Data.AB_IMUSW.toInt()),
         intArrayOf(R.string.abi_imcri, 1, Data.P_CRITI.toInt()), intArrayOf(R.string.sch_abi_imusm, 1, Data.P_IMUSUMMON.toInt()), intArrayOf(R.string.sch_abi_imar, 1, Data.P_IMUARMOR.toInt()),
         intArrayOf(R.string.sch_abi_imlt, 1, Data.P_IMULETHARGY.toInt()), intArrayOf(R.string.sch_abi_imr, 1, Data.P_IMURAGE.toInt()), intArrayOf(R.string.sch_abi_imh, 1, Data.P_IMUHYPNO.toInt()),
-        intArrayOf(R.string.sch_abi_imsp, 1, Data.P_IMUSPEED.toInt()), intArrayOf(R.string.sch_abi_wlv, 1, Data.P_WORKERLV.toInt()), intArrayOf(R.string.sch_abi_cdc, 1, Data.P_CDSETTER.toInt()),
+        intArrayOf(R.string.sch_abi_imsp, 1, Data.P_IMUSPEED.toInt()), intArrayOf(R.string.sch_abi_wlv, 1, Data.P_WORKERLV.toInt()), intArrayOf(R.string.sch_abi_cdc, 1, Data.P_DELAY.toInt()), intArrayOf(R.string.sch_abi_cdi, 1, Data.P_IMUDELAY.toInt()),
         intArrayOf(R.string.sch_abi_waur, 1, Data.P_WEAKAURA.toInt()), intArrayOf(R.string.sch_abi_saur, 1, Data.P_STRONGAURA.toInt()), intArrayOf(R.string.sch_abi_imcn, 1, Data.P_IMUCANNON.toInt()),
         intArrayOf(R.string.sch_abi_st, 1, Data.P_DMGINC.toInt()), intArrayOf(R.string.sch_abi_re,1, Data.P_DEFINC.toInt()), intArrayOf(R.string.sch_abi_rgn, 1, Data.P_HPREGEN.toInt()), intArrayOf(R.string.sch_abi_stt, 1, Data.P_AI.toInt()))
 

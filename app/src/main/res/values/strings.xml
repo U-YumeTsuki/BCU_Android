@@ -1151,4 +1151,20 @@
     <string name="limit_espd" translatable="false">SPD Override(Enemy)</string>
     <string name="sch_abi_cnc" translatable="false">Cannon Charge</string>
     <string name="sch_abi_rgn" translatable="false">Regeneration</string>
+    <string name="sch_abi_cdi" translatable="false">Delay Immunity</string>
+    <string name="orb_cann" translatable="false">Cannon Recharge</string>
+    <string name="orb_cann_desc" translatable="false">Every 2nd unit killed will decrease cannon CD by _%.</string>
+    <string name="orb_imupoi" translatable="false">Toxic Resistance</string>
+    <string name="orb_imupoi_desc" translatable="false">Decreases Toxic damage by _%.</string>
+    <string name="orb_dodge" translatable="false">Dodge</string>
+    <string name="orb_dodge_desc" translatable="false">_% chance to dodge enemy attacks.</string>
+    <string name="orb_imuslow" translatable="false">Slow Resistance</string>
+    <string name="orb_imuslow_desc" translatable="false">Reduces slow duration by _%.</string>
+    <string name="orb_imucurse" translatable="false">Curse Resistance</string>
+    <string name="orb_imucurse_desc" translatable="false">Decreases curse duration by _%.</string>
+    <string name="orb_ul" translatable="false">UL Buff</string>
+    <string name="orb_ul_desc" translatable="false">Increases HP/Damage in SoL stages by _%/-%.</string>
+    <string name="orb_conjure" translatable="false">Conjure</string>
+    <string name="orb_conjure_desc" translatable="false">Conjures counter-surges that deal _% damage.</string>
+    <string name="orb_berserk" translatable="false">Berserk</string>
 </resources>

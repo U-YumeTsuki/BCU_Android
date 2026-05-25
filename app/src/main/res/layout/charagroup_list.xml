@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.yumetsuki.bcu.androidutil.supports.AutoMarquee
+        android:id="@+id/CGID"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="@string/unit_info_id"
+        android:textColor="?attr/TextPrimary"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@id/cgexpand"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.yumetsuki.bcu.androidutil.supports.AutoMarquee
+        android:id="@+id/cgdesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:paddingBottom="4dp"
+        android:singleLine="true"
+        android:text="Medium Text"
+        android:textAppearance="@style/CounterStyle"
+        android:textColor="?attr/TextPrimary"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/cgexpand"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/CGID" />
+
+    <View
+        android:id="@+id/fadeout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/SemiBackgroundPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/cgexpand"
+        android:layout_width="72dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="0.2"
+        android:background="@drawable/cell_shape"
+        android:contentDescription="@string/def_description"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="@id/cgdesc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/CGID"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_expand_less_black_24dp"
+        app:tint="?attr/iconPrimary" />
+</androidx.constraintlayout.widget.ConstraintLayout>

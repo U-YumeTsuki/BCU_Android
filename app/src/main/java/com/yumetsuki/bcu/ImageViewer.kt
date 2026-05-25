@@ -290,7 +290,7 @@ class ImageViewer : AppCompatActivity() {
                             val dateFormat = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.US)
                             val date = Date()
 
-                            val name = if(data.pack == Identifier.DEF) {
+                            val name = if(data.fromBC()) {
                                 dateFormat.format(date) + "-BG-" + bgnum
                             } else {
                                 dateFormat.format(date) + "-BG-"+ data.pack +"-"+bgnum
@@ -370,30 +370,17 @@ class ImageViewer : AppCompatActivity() {
                     }
 
                     val content = when(type) {
-                        AnimationCView.AnimationType.UNIT -> {
-                            StaticStore.transformIdentifier(extra.getString("Data")) ?: return@launch
-                        }
-                        AnimationCView.AnimationType.ENEMY -> {
-                            StaticStore.transformIdentifier(extra.getString("Data")) ?: return@launch
-                        }
-                        AnimationCView.AnimationType.EFFECT -> {
-                            CommonStatic.getBCAssets().effas.values()[index]
-                        }
-                        AnimationCView.AnimationType.SOUL -> {
-                            UserProfile.getBCData().souls.list[index]
-                        }
-                        AnimationCView.AnimationType.CANNON -> {
-                            CommonStatic.getBCAssets().atks[index]
-                        }
-                        AnimationCView.AnimationType.DEMON_SOUL -> {
-                            CommonStatic.getBCAssets().demonSouls[index]
-                        }
+                        AnimationCView.AnimationType.UNIT -> StaticStore.transformIdentifier(extra.getString("Data")) ?: return@launch
+                        AnimationCView.AnimationType.ENEMY -> StaticStore.transformIdentifier(extra.getString("Data")) ?: return@launch
+                        AnimationCView.AnimationType.EFFECT -> CommonStatic.getBCAssets().effas.values()[index]
+                        AnimationCView.AnimationType.SOUL -> UserProfile.getBCData().souls.list[index]
+                        AnimationCView.AnimationType.CANNON -> CommonStatic.getBCAssets().atks[index]
+                        AnimationCView.AnimationType.DEMON_SOUL -> CommonStatic.getBCAssets().demonSouls[index]
                         AnimationCView.AnimationType.CUSTOM -> {
                             val res = JsonDecoder.decode(JsonParser.parseString(extra.getString("Data")), ResourceLocation::class.java) ?: return@launch
                             val a = if (res.pack == ResourceLocation.LOCAL)
                                 AnimCE.map()[res.id]
-                            else
-                                UserProfile.getUserPack(res.pack)?.source?.loadAnimation(res.id, res.base)
+                            else UserProfile.getUserPack(res.pack)?.source?.loadAnimation(res.id, res.base)
                             if (a == null)
                                 return@launch
                             a
@@ -401,7 +388,7 @@ class ImageViewer : AppCompatActivity() {
                     }
 
                     val pack = if (type == AnimationCView.AnimationType.UNIT || type == AnimationCView.AnimationType.ENEMY) {
-                        if ((content as Identifier<*>).pack == Identifier.DEF) {
+                        if ((content as Identifier<*>).fromBC()) {
                             "Default"
                         } else {
                             content.pack
@@ -493,7 +480,7 @@ class ImageViewer : AppCompatActivity() {
                         u.forms.forEach { f -> f.anim.load() }
 
                         val formAdapter = ArrayAdapter(this@ImageViewer, R.layout.spinneradapter, u.forms.map {
-                            f -> if (content.pack == Identifier.DEF) "${getString(R.string.pack_default)}-${content.id}-${f.fid}"
+                            f -> if (content.fromBC()) "${getString(R.string.pack_default)}-${content.id}-${f.fid}"
                             else "${content.pack}-${content.id}-${f.fid}"
                         })
 
@@ -674,7 +661,7 @@ class ImageViewer : AppCompatActivity() {
 
                                 val imageName = when(content) {
                                     is Identifier<*> -> {
-                                        val packName = if (content.pack == Identifier.DEF) getString(R.string.pack_default)
+                                        val packName = if (content.fromBC()) getString(R.string.pack_default)
                                         else content.pack
 
                                         if (type == AnimationCView.AnimationType.UNIT)
@@ -722,7 +709,7 @@ class ImageViewer : AppCompatActivity() {
 
                                 val imageName = when(content) {
                                     is Identifier<*> -> {
-                                        val packName = if (content.pack == Identifier.DEF) getString(R.string.pack_default)
+                                        val packName = if (content.fromBC()) getString(R.string.pack_default)
                                         else content.pack
 
                                         if (type == AnimationCView.AnimationType.UNIT) {
@@ -753,7 +740,7 @@ class ImageViewer : AppCompatActivity() {
                                 return@OnMenuItemClickListener true
                             }
                             R.id.anim_png_sprite -> {
-                                if (content is Identifier<*> && content.pack != Identifier.DEF && !UserProfile.getUserPack(content.pack).desc.allowAnim) {
+                                if (content is Identifier<*> && !content.fromBC() && !UserProfile.getUserPack(content.pack).desc.allowAnim) {
                                     val dialog = Dialog(this@ImageViewer)
                                     dialog.setContentView(R.layout.create_setlu_dialog)
                                     val edit = dialog.findViewById<EditText>(R.id.setluedit)
@@ -783,7 +770,7 @@ class ImageViewer : AppCompatActivity() {
                                 return@OnMenuItemClickListener true
                             }
                             R.id.anim_copy_anim -> {
-                                if (content is Identifier<*> && content.pack != Identifier.DEF && !UserProfile.getUserPack(content.pack).desc.allowAnim) {
+                                if (content is Identifier<*> && !content.fromBC() && !UserProfile.getUserPack(content.pack).desc.allowAnim) {
                                     val dialog = Dialog(this@ImageViewer)
                                     dialog.setContentView(R.layout.create_setlu_dialog)
                                     val edit = dialog.findViewById<EditText>(R.id.setluedit)

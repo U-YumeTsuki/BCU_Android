@@ -466,7 +466,7 @@ class UnitInfo : AppCompatActivity() {
         if (u.info.evo == null)
             viewPager.setPadding(0, 0, 0, StaticStore.dptopx(24f, this))
 
-        if (MultiLangCont.getStatic().FEXP.getCont(u.forms[0]) == null && (u.id.pack == Identifier.DEF || u.forms[0].description.toString().isBlank())) {
+        if (MultiLangCont.getStatic().FEXP.getCont(u.forms[0]) == null && (u.fromBC() || u.forms[0].description.toString().isBlank())) {
             StaticStore.setDisappear(viewPager, view, view2, exp)
         }
     }

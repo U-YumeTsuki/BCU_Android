@@ -63,7 +63,7 @@ class MusicListAdapter(context: Context, private val name: ArrayList<Identifier<
     }
 
     private fun generateName(id: Identifier<Music>) : String {
-        return if(id.pack == Identifier.DEF) {
+        return if(id.fromBC()) {
             context.getString(R.string.pack_default) +" - "+ Data.trio(id.id)
         } else {
             StaticStore.getPackName(id.pack)+" - "+ Data.trio(id.id)

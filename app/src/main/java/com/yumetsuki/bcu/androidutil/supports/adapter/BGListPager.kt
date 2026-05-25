@@ -190,7 +190,7 @@ class BGListPager : Fragment() {
         }
 
         private fun generateName(id: Identifier<Background>) : String {
-            return if(id.pack == Identifier.DEF) {
+            return if(id.fromBC()) {
                 "${c.getString(R.string.pack_default)} - ${Data.trio(id.id)}${if (id.get().bgEffect?.get() != null) " (Eff ${id.get().bgEffect.get()})" else ""}"
             } else
                 "${StaticStore.getPackName(id.pack)} - ${Data.trio(id.id)}${if (id.get().bgEffect?.get() != null) " (Eff ${id.get().bgEffect.get()})" else ""}"

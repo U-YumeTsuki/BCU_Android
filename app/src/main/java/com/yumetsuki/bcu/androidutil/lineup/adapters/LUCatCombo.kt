@@ -50,7 +50,7 @@ class LUCatCombo : Fragment() {
         StaticStore.combos.sortWith(Comparator.comparingInt(Combo::type).thenComparingInt(Combo::lv))
 
         val names = Array<String>(StaticStore.combos.size) {
-            if(StaticStore.combos[it].id.pack == Identifier.DEF) {
+            if(StaticStore.combos[it].fromBC()) {
                 MultiLangCont.getStatic().COMNAME.getCont(StaticStore.combos[it]) ?: Data.trio(StaticStore.combos[it].id.id)
             } else {
                 StaticStore.combos[it].getName() ?: ""

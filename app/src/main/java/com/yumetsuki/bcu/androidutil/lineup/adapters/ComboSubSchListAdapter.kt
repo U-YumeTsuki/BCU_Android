@@ -83,7 +83,7 @@ class ComboSubSchListAdapter internal constructor(private val activity: Activity
                 StaticStore.combos.sortWith(Comparator.comparingInt(Combo::type).thenComparingInt(Combo::lv))
 
                 val names = Array<String>(StaticStore.combos.size) {
-                    if(StaticStore.combos[it].id.pack == Identifier.DEF) {
+                    if(StaticStore.combos[it].fromBC()) {
                         MultiLangCont.getStatic().COMNAME.getCont(StaticStore.combos[it])
                     } else {
                         StaticStore.combos[it].name
@@ -106,7 +106,7 @@ class ComboSubSchListAdapter internal constructor(private val activity: Activity
                 StaticStore.combos.sortWith(Comparator.comparingInt(Combo::type).thenComparingInt(Combo::lv))
 
                 val names = Array<String>(StaticStore.combos.size) {
-                    if(StaticStore.combos[it].id.pack == Identifier.DEF) {
+                    if(StaticStore.combos[it].fromBC()) {
                         MultiLangCont.getStatic().COMNAME.getCont(StaticStore.combos[it])
                     } else {
                         StaticStore.combos[it].name

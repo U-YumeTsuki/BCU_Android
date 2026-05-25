@@ -69,7 +69,7 @@ import kotlin.math.ln
 object StaticStore {
     //System & IO variables
     /**Version of Application */
-    const val VER = "0.20.19"
+    const val VER = "0.20.21"
 
     /**Locale codes list */
     val lang = arrayOf("", "en", "zh", "ko", "ja", "ru", "de", "fr", "es", "it", "th")
@@ -1155,7 +1155,7 @@ object StaticStore {
         if(id == null)
             return c?.getString(R.string.unit_info_t_none) ?: "None"
 
-        return if(id.pack == Identifier.DEF || id.pack == "000001" || id.pack == "000002" || id.pack == "000003") {
+        return if(id.fromBC() || id.pack == "000001" || id.pack == "000002" || id.pack == "000003") {
             (c?.getString(R.string.pack_default) ?: "Default") +" - "+ Data.trio(id.id)
         } else {
             getPackName(id.pack)+" - "+Data.trio(id.id)

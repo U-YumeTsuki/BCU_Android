@@ -48,7 +48,7 @@ object Interpret : Data() {
             P_IMUWEAK, P_IMUSTOP, P_IMUSLOW, P_IMUKB, P_IMUWAVE, P_IMUVOLC, P_IMUBLAST, P_IMUWARP, P_IMUCURSE, P_IMUPOIATK, P_IMULETHARGY, P_IMURAGE, P_IMUHYPNO,
             P_POIATK, P_BARRIER, P_DEMONSHIELD, P_REMOTESHIELD, P_RANGESHIELD, P_DEATHSURGE, P_BURROW, P_REVIVE, P_SNIPER, P_SEAL, P_BLESS, P_TIME, P_SUMMON,
             P_MOVEWAVE, P_THEME, P_POISON, P_BOSS, P_ARMOR, P_SPEED, P_COUNTER, P_DMGCUT, P_DMGCAP, P_CRITI, P_IMUPOI, P_IMUSEAL, P_IMUMOVING, P_IMUSUMMON,
-            P_IMUARMOR, P_IMUSPEED, P_WORKERLV, P_CDSETTER, P_WEAKAURA, P_STRONGAURA, P_DRAIN, P_IMUCANNON, P_AI)
+            P_IMUARMOR, P_IMUSPEED, P_WORKERLV, P_DELAY, P_IMUDELAY, P_WEAKAURA, P_STRONGAURA, P_DRAIN, P_IMUCANNON, P_AI)
 
     /**
      * treasure max
@@ -69,7 +69,7 @@ object Interpret : Data() {
         if (traits.isEmpty()) return ""
         val ans = StringBuilder()
         for(trait in traits) {
-            if(trait.BCTrait()) {
+            if(trait.fromBC()) {
                 if(trait.id.id == 6 && star == 1)
                     ans.append(c.getString(TRAIT[6])).append(" (").append(c.getString(STAR[1])).append("), ")
                 else ans.append(c.getString(TRAIT[trait.id.id])).append(", ")
