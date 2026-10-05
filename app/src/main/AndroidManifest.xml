@@ -88,6 +88,8 @@
         <activity android:name=".PackChapterManager" />
         <activity android:name=".PackStageManager" />
         <activity android:name=".LimitEditor" />
+        <activity android:name=".CharaGroupList" />
+        <activity android:name=".LvRestrictList" />
         <activity android:name=".PackStageEnemyManager" />
         <activity
             android:name=".ImgCutEditor"

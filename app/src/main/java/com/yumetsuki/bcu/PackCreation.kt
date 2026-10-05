@@ -36,7 +36,7 @@ class PackCreation : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val shared = getSharedPreferences(StaticStore.CONFIG, Context.MODE_PRIVATE)
+        val shared = getSharedPreferences(StaticStore.CONFIG, MODE_PRIVATE)
         val ed: SharedPreferences.Editor
 
         if (!shared.contains("initial")) {

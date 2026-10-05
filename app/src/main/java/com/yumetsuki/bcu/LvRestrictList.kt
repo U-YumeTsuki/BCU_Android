@@ -18,7 +18,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.yumetsuki.bcu.androidutil.Definer
 import com.yumetsuki.bcu.androidutil.StaticStore
-import com.yumetsuki.bcu.androidutil.charagroup.CgListPager
+import com.yumetsuki.bcu.androidutil.charagroup.LvrListPager
 import com.yumetsuki.bcu.androidutil.io.AContext
 import com.yumetsuki.bcu.androidutil.io.DefineItf
 import com.yumetsuki.bcu.androidutil.io.ErrorLogWriter
@@ -31,7 +31,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CharaGroupList : AppCompatActivity() {
+class LvRestrictList : AppCompatActivity() {
 
     lateinit var pack : UserPack
 
@@ -63,29 +63,29 @@ class CharaGroupList : AppCompatActivity() {
 
         (CommonStatic.ctx as AContext).updateActivity(this)
         Thread.setDefaultUncaughtExceptionHandler(ErrorLogWriter())
-        setContentView(R.layout.activity_charagroup_list)
+        setContentView(R.layout.activity_lvrestrict_list)
         pack = UserProfile.getUserPack(intent.extras?.getString("pack")) ?: return
 
         lifecycleScope.launch {
             //Prepare
-            val groupList = findViewById<NestedScrollView>(R.id.cglistscroll)
+            val groupList = findViewById<NestedScrollView>(R.id.lvrlistscroll)
             val status = findViewById<TextView>(R.id.status)
             val progression = findViewById<ProgressBar>(R.id.prog)
-            val tab = findViewById<TabLayout>(R.id.cglisttab)
-            val pager = findViewById<ViewPager2>(R.id.cglistpager)
-            val bck = findViewById<FloatingActionButton>(R.id.cgbck)
+            val tab = findViewById<TabLayout>(R.id.lvrlisttab)
+            val pager = findViewById<ViewPager2>(R.id.lvrlistpager)
+            val bck = findViewById<FloatingActionButton>(R.id.lvrback)
             progression.isIndeterminate = true
 
             //Load Data
             withContext(Dispatchers.IO) {
-                Definer.define(this@CharaGroupList, { _ -> }, { t -> runOnUiThread { status.text = t }})
+                Definer.define(this@LvRestrictList, { _ -> }, { t -> runOnUiThread { status.text = t }})
             }
 
             pager.isSaveEnabled = false
             pager.isSaveFromParentEnabled = false
 
             val keys = getExistingPack()
-            pager.adapter = CgListTab()
+            pager.adapter = LvrListTab()
             pager.offscreenPageLimit = keys.size
 
             TabLayoutMediator(tab, pager) { t, position ->
@@ -100,7 +100,7 @@ class CharaGroupList : AppCompatActivity() {
             if(keys.size == 1) {
                 tab.visibility = View.GONE
 
-                val collapse = findViewById<CollapsingToolbarLayout>(R.id.cgcollapse)
+                val collapse = findViewById<CollapsingToolbarLayout>(R.id.lvrcollapse)
 
                 val param = collapse.layoutParams as AppBarLayout.LayoutParams
 
@@ -122,15 +122,15 @@ class CharaGroupList : AppCompatActivity() {
         val res = ArrayList<String>()
         res.add(Identifier.DEF)
 
-        if (!pack.groups.isEmpty)
+        if (!pack.lvrs.isEmpty)
             res.add(pack.sid)
         for(str in pack.desc.dependency)
-            if(!UserProfile.getUserPack(str).groups.isEmpty)
+            if(!UserProfile.getUserPack(str).lvrs.isEmpty)
                 res.add(str)
         return res
     }
 
-    inner class CgListTab : FragmentStateAdapter(supportFragmentManager, lifecycle) {
+    inner class LvrListTab : FragmentStateAdapter(supportFragmentManager, lifecycle) {
         private val keys = getExistingPack()
 
         override fun getItemCount(): Int {
@@ -138,7 +138,7 @@ class CharaGroupList : AppCompatActivity() {
         }
 
         override fun createFragment(position: Int): Fragment {
-            return CgListPager.newInstance(keys[position])
+            return LvrListPager.newInstance(keys[position])
         }
     }
 }

@@ -232,6 +232,11 @@ class CVGraphics : FakeGraphics {
         c.setMatrix(m)
     }
 
+    override fun shear(x: Float, y: Float) {
+        m.preSkew(x, y)
+        c.setMatrix(m)
+    }
+
     override fun setColor(c: Int) {
         when (c) {
             FakeGraphics.RED -> {

@@ -189,9 +189,8 @@ class MainActivity : AppCompatActivity() {
 
                         startActivity(intent)
 
-                        if(classes[index] == PackManagement::class.java) {
+                        if(classes[index] == PackManagement::class.java)
                             finish()
-                        }
                     }
                 })
 
@@ -244,9 +243,8 @@ class MainActivity : AppCompatActivity() {
 
                             startActivity(intent)
 
-                            if(classes[index] == PackManagement::class.java) {
+                            if(classes[index] == PackManagement::class.java)
                                 finish()
-                            }
                         }
                     })
 

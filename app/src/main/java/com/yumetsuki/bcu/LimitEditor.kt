@@ -2,6 +2,7 @@ package com.yumetsuki.bcu
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.view.View
@@ -39,6 +40,7 @@ class LimitEditor : AppCompatActivity() {
 
     companion object {
         lateinit var lim : Limit
+        lateinit var pack : String
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -151,14 +153,18 @@ class LimitEditor : AppCompatActivity() {
             val t = "${getString(R.string.limit_chra)}: ${lim.group}"
             lcgroup.text = t
             lcgroup.setOnClickListener {
-                //TODO("WIP")
+                val intent = Intent(this@LimitEditor, CharaGroupList::class.java)
+                intent.putExtra("pack", pack)
+                startActivity(intent)
             }
 
             val llvr : Button = findViewById(R.id.pklimlvrestriction)
             val u = "${getString(R.string.limit_lvres)}: ${lim.lvr}"
             llvr.text = u
             llvr.setOnClickListener {
-                //TODO("WIP")
+                val intent = Intent(this@LimitEditor, LvRestrictList::class.java)
+                intent.putExtra("pack", pack)
+                startActivity(intent)
             }
 
             if (lim.stageLimit == null)

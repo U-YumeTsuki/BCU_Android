@@ -185,6 +185,7 @@ class CustomChapterListAdapter(private val pack : UserPack, private val ctx: Act
 
             holder.edit.setOnClickListener {
                 LimitEditor.lim = lim
+                LimitEditor.pack = map.cont.sid
                 val intent = Intent(ctx, LimitEditor::class.java)
                 intent.putExtra("name", "$map $t: $lim")
 

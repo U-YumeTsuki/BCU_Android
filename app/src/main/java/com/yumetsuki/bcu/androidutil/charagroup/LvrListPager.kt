@@ -21,12 +21,13 @@ import common.io.json.JsonEncoder
 import common.pack.Identifier
 import common.pack.UserProfile
 import common.util.stage.CharaGroup
+import common.util.stage.LvRestrict
 
-class CgListPager : Fragment() {
+class LvrListPager : Fragment() {
 
     companion object {
-        fun newInstance(pid: String) : CgListPager {
-            val cs = CgListPager()
+        fun newInstance(pid: String) : LvrListPager {
+            val cs = LvrListPager()
             val bundle = Bundle()
 
             bundle.putString("pid", pid)
@@ -47,12 +48,12 @@ class CgListPager : Fragment() {
         val nores = view.findViewById<TextView>(R.id.entitynores)
 
         val p = UserProfile.getPack(pid) ?: return view
-        if (p.groups.isEmpty)
+        if (p.lvrs.isEmpty)
             return view
 
         nores.visibility = View.GONE
-        val csList = p.groups
-        val adapter = CharaGroupAdapter(c, csList.list)
+        val csList = p.lvrs
+        val adapter = LvRestrictionAdapter(c, csList.list)
         list.adapter = adapter
         list.onItemClickListener = AdapterView.OnItemClickListener { _, _, posit, _ ->
             if(SystemClock.elapsedRealtime() - StaticStore.cslistClick < StaticStore.INTERVAL)
@@ -67,12 +68,9 @@ class CgListPager : Fragment() {
         return view
     }
 
-    internal class CharaGroupAdapter(private val c : Context, private val imgs : List<CharaGroup>) : ArrayAdapter<CharaGroup>(c, R.layout.charagroup_list, imgs) {
+    internal class LvRestrictionAdapter(private val c : Context, private val imgs : List<LvRestrict>) : ArrayAdapter<LvRestrict>(c, R.layout.listlayout, imgs) {
         inner class ViewHolder(row: View) {
-            val id = row.findViewById<AutoMarquee>(R.id.CGID)!!
-            val title = row.findViewById<TextView>(R.id.cgdesc)!!
-            val expand = row.findViewById<ImageView>(R.id.cgexpand)!!
-            val fadeout = row.findViewById<View>(R.id.cgdesc)!!
+            val text: TextView = row.findViewById(R.id.spinnertext)
         }
 
 
@@ -89,9 +87,7 @@ class CgListPager : Fragment() {
                 row = view
                 holder = row.tag as ViewHolder
             }
-            holder.id.text = StaticStore.generateIdName(imgs[pos].id, c)
-            holder.title.text = imgs[pos].name.toString()
-            //TODO: Expand desc
+            holder.text.text = StaticStore.generateIdName(imgs[pos].id, c) + " - " + imgs[pos].name.toString()
 
             return row
         }
